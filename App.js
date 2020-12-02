@@ -1,5 +1,5 @@
 /**
- * Sample OIDC Reat Native App
+ * Sample OIDC React Native App
  * @format
  * @flow strict-local
  */
@@ -9,7 +9,7 @@ import { authorize, refresh, revoke } from 'react-native-app-auth';
 import { Buffer } from 'buffer';
 
 const configs = {
-  forgerock: {
+  provider : {
     issuer: 'https://amlab4.personal.com.ar:8543/openam',
     clientId: 'mobile',
     redirectUrl: 'com.identicum.mobile.demo:/oauthredirect',
@@ -38,7 +38,7 @@ class App extends Component {
       }
       _onLogin = () => { 
         console.log("___ Login...")
-        authorize(configs.forgerock).then(authResponse => {
+        authorize(configs.provider).then(authResponse => {
             console.log("___ Response:" + authResponse);
             let idTokenJSON = 
             this.setState( { 
@@ -57,7 +57,7 @@ class App extends Component {
         console.log("___ Logout...")
         // TODO: Handling revoke token
         /**
-        revoke(configs.forgerock, { tokenToRevoke: this.state.accessToken, sendClientId: true}).then(success => {
+        revoke(configs.provider, { tokenToRevoke: this.state.accessToken, sendClientId: true}).then(success => {
            console.log(success);
         })
         .catch(error => console.log(error));
